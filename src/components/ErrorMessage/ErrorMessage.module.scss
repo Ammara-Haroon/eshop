@@ -1,0 +1,18 @@
+@use "../../partials/variables" as var;
+
+.error {
+  min-height: var.$MIN-PAGE-HEIGHT;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2,
+  h4 {
+    text-align: center;
+    padding: 5px;
+  }
+  ul {
+    padding: 30px;
+  }
+}

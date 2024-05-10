@@ -1,0 +1,16 @@
+@use "../../partials/variables" as var;
+
+.spinner {
+  font-size: xxx-large;
+  color: rgb(70, 70, 70);
+  width: 15%;
+  height: 15%;
+}
+.wrapper {
+  width: 100vw;
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: var.$MIN-PAGE-HEIGHT;
+}

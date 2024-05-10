@@ -1,0 +1,5 @@
+@use "../../partials/variables" as var;
+
+.page {
+  min-height: var.$MIN-PAGE-HEIGHT;
+}

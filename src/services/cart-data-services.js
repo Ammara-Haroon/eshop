@@ -1,0 +1,93 @@
+import { getPriceAfterDiscount } from "./util-services";
+
+export const addToCart = (product, color = "black", quantity = 1) => {
+  if (!window.sessionStorage.getItem("cart")) {
+    window.sessionStorage.setItem("cart", JSON.stringify([]));
+  }
+  //console.log("add to cart", product, color, quantity);
+  const cart = JSON.parse(window.sessionStorage.getItem("cart"));
+  const index = cart.findIndex(
+    (item) => item.product.docId === product.docId && item.color === color
+  );
+  if (index === -1) {
+    cart.push({ product: product, color: color, quantity: quantity });
+  } else if (cart[index].quantity + quantity <= cart[index].product.stock) {
+    cart[index].quantity = Number(cart[index].quantity) + quantity;
+  } else {
+    throw new Error("No more stock !");
+  }
+  window.sessionStorage.setItem("cart", JSON.stringify(cart));
+  return cart;
+};
+
+export const deleteFromCart = (productId, color) => {
+  const cart = JSON.parse(window.sessionStorage.getItem("cart"));
+  const index = cart.findIndex(
+    (item) => item.product.docId === productId && item.color === color
+  );
+  console.log("delettttttttttt", index);
+  if (index === -1) {
+    return;
+  }
+  if (Number(cart[index].quantity) === 1) {
+    window.sessionStorage.setItem(
+      "cart",
+      JSON.stringify(
+        cart.filter((p) => p.product.docId !== productId || p.color !== color)
+      )
+    );
+  } else {
+    cart[index].quantity = Number(cart[index].quantity) - 1;
+
+    window.sessionStorage.setItem("cart", JSON.stringify(cart));
+  }
+  console.log("new qtyyyyyyyyy", cart[index].product);
+};
+
+export const getCart = () => {
+  if (!window.sessionStorage.getItem("cart")) {
+    window.sessionStorage.setItem("cart", JSON.stringify([]));
+  }
+  return JSON.parse(window.sessionStorage.getItem("cart"));
+};
+
+export const getCartTotal = () => {
+  if (!window.sessionStorage.getItem("cart")) {
+    return 0;
+  }
+  const cart = JSON.parse(window.sessionStorage.getItem("cart"));
+  return cart.reduce((acc, cur) => {
+    console.log("acc", acc, "cur", cur.product.price);
+    return (
+      acc +
+      cur.quantity *
+        Number(cur.product.price) *
+        ((100 - Number(cur.product.discountPercentage)) / 100)
+    );
+  }, 0);
+};
+
+// export const getProductQuantity = (productId, color = "black") => {
+//   const cartItems = getCart();
+//   const myItem = cartItems.filter(
+//     (item) => item.product.docId === productId && item.color === color
+//   );
+//   if (myItem.length > 0) {
+//     return myItem[0].quantity;
+//   }
+//   return 0;
+// };
+// export const getProductQuantity = (productId) => {
+//   const cartItems = getCart();
+//   const myItem = cartItems.filter((item) => item.product.docId === productId);
+//   const allProductsQuantity = myItem.reduce((acc, cur) => {
+//     return acc + cur.quantity;
+//   }, 0);
+//   console.log("stock", allProductsQuantity);
+//   return allProductsQuantity;
+// };
+export const getNumberOfCartItems = () => {
+  return getCart().reduce((acc, cur) => {
+    return acc + cur.quantity;
+  }, 0);
+};

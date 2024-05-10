@@ -1,0 +1,49 @@
+input[type="radio"] {
+  margin: 10px;
+  border: 1px solid red;
+  height: 30px;
+  aspect-ratio: 1;
+}
+input[type="radio"]:after {
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 0px;
+  left: 0px;
+  position: relative;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+input[type="radio"]:checked:after {
+  width: 26px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 4px solid #454545;
+  box-shadow: none;
+}
+
+.pink:after {
+  background-color: pink;
+}
+.brown:after {
+  background-color: brown;
+}
+.beige:after {
+  background-color: beige;
+  border: 1px solid rgba(#222222, 0.3);
+}
+.black:after {
+  background-color: black;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+}

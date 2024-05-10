@@ -1,0 +1,41 @@
+.header {
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  width: 100vw;
+  .link {
+    text-decoration: none;
+  }
+  h1 {
+    border: 2px solid gray;
+
+    span {
+      border: none;
+      color: beige;
+      font-size: xxx-large;
+      background-image: linear-gradient(black, grey);
+    }
+  }
+  .icon_container {
+    position: absolute;
+    right: 25px;
+    display: flex;
+    .icon {
+      font-size: x-large;
+      padding: 10px;
+    }
+    .icon_wrapper {
+      // border: 1px solid red;
+      position: relative;
+    }
+    small {
+      position: absolute;
+      top: -10px;
+      right: 11px;
+      font-weight: bold;
+    }
+  }
+}

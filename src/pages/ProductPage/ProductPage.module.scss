@@ -1,0 +1,85 @@
+@use "../../partials/variables" as var;
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid lightgray;
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+  }
+}
+.information {
+  padding: 5px;
+  h2 {
+    font-weight: normal;
+    font-size: xx-large;
+    padding: 5px 0 5px 0;
+  }
+  // .price {
+  //   color: grey;
+  //   font-size: 22px;
+  // }
+  p,
+  label {
+    color: rgb(70, 70, 70);
+    padding: 5px;
+  }
+  label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .cart_button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    max-width: 600px;
+    font-size: 18px;
+    &:hover {
+      opacity: 0.7;
+    }
+    &:disabled {
+      background-color: grey;
+    }
+  }
+  input[type="number"] {
+    border: 1px solid rgb(70, 70, 70);
+    height: 38px;
+    background: 0px 0px;
+    padding: 0;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    color: rgb(50, 50, 50);
+    //width: 1000px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media only screen and (max-width: 900px) {
+      align-items: flex-start;
+    }
+  }
+}
+
+.icon {
+  background-color: transparent;
+  border: none;
+  background: none;
+  text-align: center;
+  color: red;
+  font-size: 50px;
+  left: 4em;
+  cursor: pointer;
+  display: inline;
+  padding-right: 20px;
+}

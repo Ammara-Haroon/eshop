@@ -1,0 +1,16 @@
+.animated {
+  background-color: #414141;
+  color: beige;
+  width: 100%;
+  text-wrap: nowrap;
+  animation: banner-motion 10s linear infinite;
+  overflow: hidden;
+}
+@keyframes banner-motion {
+  from {
+    padding-left: 0px;
+  }
+  to {
+    padding-left: 100%;
+  }
+}
