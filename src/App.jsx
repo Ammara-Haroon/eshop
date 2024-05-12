@@ -13,6 +13,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <Banner message={"Big Sale Tomorrow -- 40% OFF on ALL ITEMS"} />
         <Header />
         <NavBar />
         <Routes>
