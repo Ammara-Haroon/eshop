@@ -18,7 +18,6 @@ import {
 
 const ProductsListPage = () => {
   const { page } = useParams();
-  //console.log("#", page);
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const newFilter = searchParams.get("filter");
@@ -41,7 +40,6 @@ const ProductsListPage = () => {
       .then((data) => {
         setProducts(data.products);
         setTotalCount(data.totalCount);
-        console.log(products);
       })
       .catch((err) => {
         setErrMsg(err.message);

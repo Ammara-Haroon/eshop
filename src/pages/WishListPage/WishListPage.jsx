@@ -9,7 +9,6 @@ const WishListPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    //console.log("wishhhhhhhhhhhhhhhh");
     setErrMsg(null);
     setIsLoading(true);
     getFavouriteProducts()

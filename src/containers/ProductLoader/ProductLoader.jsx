@@ -10,7 +10,6 @@ const ProductsLoader = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState(null);
-  console.log(id);
   useEffect(() => {
     setErrMsg(null);
     setIsLoading(true);

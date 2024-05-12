@@ -9,7 +9,6 @@ import {
 import { getNumberOfCartItems } from "../../services/cart-data-services";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCartShopping,
   faHeart,
   faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
@@ -22,12 +21,10 @@ const Header = () => {
     getCountOfFavouriteProducts().then(setFavCount);
 
     const handleCartChange = () => {
-      console.log("click", getNumberOfCartItems());
       setCartCount(getNumberOfCartItems());
       getCountOfFavouriteProducts().then(setFavCount);
     };
     const handleFavouriteChange = () => {
-      console.log("mousedown", favCount);
       setCartCount(getNumberOfCartItems());
       getCountOfFavouriteProducts().then(setFavCount);
     };

@@ -29,12 +29,10 @@ export const getProductById = async (docId) => {
   if (!snapshot.exists()) {
     throw new Error("Could not find product with id " + id);
   }
-  console.log(snapshot.data());
   return { ...snapshot.data(), docId: snapshot.id };
 };
 
 export const updateFavouriteProducts = async (docId, isLiked) => {
-  console.log("updating..", docId, "favourite:", isLiked);
   const docRef = doc(db, "products", docId);
   await updateDoc(docRef, { favourite: isLiked });
 };
@@ -53,7 +51,6 @@ export const getCountOfFavouriteProducts = async () => {
   const products = collection(db, "products");
   let favQuery = query(products, where("favourite", "==", true));
   const snapshot = await getCountFromServer(favQuery);
-  console.log("count: ", snapshot.data().count);
   return snapshot.data().count;
 };
 export const getFeaturedProducts = async () => {
@@ -73,7 +70,6 @@ export const getTotalCountOfProducts = async (category) => {
     ? query(coll, where("category", "==", category))
     : query(coll);
   const snapshot = await getCountFromServer(q);
-  console.log("count: ", snapshot.data().count);
   return snapshot.data().count;
 };
 
@@ -84,18 +80,6 @@ export const getProductsByPage = async (
   order = ""
 ) => {
   const numResults = pg * numberOfProductsPerPage;
-  console.log(
-    "pg",
-    pg,
-    "results",
-    numResults,
-    "pp",
-    numberOfProductsPerPage,
-    "cat",
-    category,
-    "order",
-    order
-  );
   const products = collection(db, "products");
   let myQuery;
 
@@ -123,40 +107,15 @@ export const getProductsByPage = async (
     ...doc.data(),
     docId: doc.id,
   }));
-  console.log(
-    productsList.length,
-    (pg - 1) * numberOfProductsPerPage + 1,
-    pg * numberOfProductsPerPage
-  );
   return productsList.slice(
     (pg - 1) * numberOfProductsPerPage,
     pg * numberOfProductsPerPage
   );
-  //
-  //   const products = collection(db, "products");
-  //   let myQuery = query(collection(db, "products"), limit(numberOfProductsPerPage));
-  //   let documentSnapshots = await getDocs(myQuery);
-
-  // // Get the last visible document
-  // for(let i = 1;i < pg;++i){
-  //   const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-  //   console.log("last", lastVisible.id);
-  //   myQuery = query(products,
-  //   startAfter(lastVisible),
-  //   limit(numberOfProductsPerPage));
-  // documentSnapshots = await getDocs(myQuery);
-  //   }
-  //   const productsList = documentSnapshots.docs.map((doc) => ({
-  //     ...doc.data(),
-  //     docId: doc.id,
-  //   }));
-  //   return productsList;
 };
 
 export const getInitialData = async (numberOfProductsPerPage = 20) => {
   const products = await getProductsByPage();
   const featured = await getFeaturedProducts();
-  console.log("featured", featured);
   const totalCount = await getTotalCountOfProducts();
   return { products, featured, totalCount };
 };

@@ -7,8 +7,6 @@ const CartItem = ({ item, handleDelete, handleAdd }) => {
   const [noMore, setNoMore] = useState(false);
 
   const handleAddWithStockUpdate = () => {
-    console.log(item.quantity, item.product.stock);
-
     if (item.quantity + 1 === item.product.stock) {
       setNoMore(true);
       console.log("no moree");
@@ -19,7 +17,6 @@ const CartItem = ({ item, handleDelete, handleAdd }) => {
     console.log(item.quantity, item.product.stock);
     if (item.quantity === item.product.stock) {
       setNoMore(false);
-      console.log("no moree false");
     }
     handleDelete(item.product.docId, item.color);
   };

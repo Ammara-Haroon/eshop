@@ -15,14 +15,11 @@ const CartPage = () => {
   const deleteCartItem = (id, color) => {
     deleteFromCart(id, color);
     setCart(getCart());
-    //console.log("new cart", getCart());
   };
   const addCartItem = (product, color) => {
     addToCart(product, color);
     setCart(getCart());
-
-    //console.log("new cart", getCart());
-  };
+ };
   return (
     <div className={style.page}>
       <h3>My Cart</h3>

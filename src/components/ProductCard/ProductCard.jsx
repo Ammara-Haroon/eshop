@@ -10,15 +10,18 @@ const ProductCard = ({ product }) => {
   const [isLiked, setIsLiked] = useState(product.favourite);
   const [addedToCart, setAddedToCart] = useState(false);
   const [noMore, setNoMore] = useState(false);
+  const navigate = useNavigate(null);
+  
   const handleLike = () => {
     updateFavouriteProducts(product.docId, !isLiked);
     setIsLiked(!isLiked);
   };
-  const navigate = useNavigate(null);
+  
+  //load the product page based on product id
   const loadProductPage = () => {
-    console.log("display page of ", product);
     navigate("/eshop/products/" + product.docId);
   };
+  
   const handleClick = () => {
     try {
       addToCart(product);
@@ -35,7 +38,7 @@ const ProductCard = ({ product }) => {
         <img
           onClick={loadProductPage}
           src={product.thumbnail}
-          alt="Denim Jeans"
+          alt={product.title}
         />
 
         <LikeButton

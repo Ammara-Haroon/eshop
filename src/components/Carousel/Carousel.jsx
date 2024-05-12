@@ -7,8 +7,6 @@ const Carousel = ({
   showThumbnails = false,
 }) => {
   const [activeSlide, setActiveSlide] = useState(0);
-  //console.log("carousel", products, activeSlide, products[activeSlide]);
-  //const dotStyleClass = `${style.dot}${}`
   useEffect(() => {
     if (isAutoSliding) {
       const to = setTimeout(() => {

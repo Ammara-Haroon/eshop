@@ -17,6 +17,13 @@ const ProductsGrid = ({
   filter,
 }) => {
   const navigate = useNavigate();
+  const numberOfProductsPerPage = 20;
+  const startIndex = 1 + (currentPage - 1) * numberOfProductsPerPage;
+  let endIndex = startIndex + numberOfProductsPerPage - 1;
+  endIndex = endIndex > totalCount ? totalCount : endIndex;
+  const sortCategories = ["title", "price"];
+  
+  //navigate to a products list page with these search parameters and filter state
   const fetchPage = (pg) => {
     let url = `/eshop/${Number(pg)}`;
     if (filter) {
@@ -24,12 +31,7 @@ const ProductsGrid = ({
     }
     navigate(url, { replace: true, state: { sortBy: sortBy } });
   };
-  const numberOfProductsPerPage = 20;
-  const startIndex = 1 + (currentPage - 1) * numberOfProductsPerPage;
-  let endIndex = startIndex + numberOfProductsPerPage - 1;
-  endIndex = endIndex > totalCount ? totalCount : endIndex;
-  const sortCategories = ["title", "price"];
-  console.log("sortby", sortBy);
+  
   return (
     <div className={style.container}>
       <h3>{heading}</h3>
