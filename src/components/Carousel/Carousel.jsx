@@ -29,8 +29,7 @@ const Carousel = ({
       >
         <button
           className={style.prev}
-          disabled={activeSlide === 0}
-          onClick={() => setActiveSlide(activeSlide - 1)}
+          onClick={() => setActiveSlide(activeSlide === 0 ? products.length-1 : activeSlide - 1)}
         >
           &#10094;
         </button>
@@ -43,8 +42,7 @@ const Carousel = ({
 
         <button
           className={style.next}
-          disabled={activeSlide === products.length - 1}
-          onClick={() => setActiveSlide(activeSlide + 1)}
+          onClick={() => setActiveSlide((activeSlide + 1) % products.length)}
         >
           &#10095;
         </button>

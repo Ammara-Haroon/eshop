@@ -123,12 +123,11 @@ A toast notification appears each time an item is added to stock or when there i
 ### 25/04/2024 - Added Cart and product variants
 ### 26/04/2024 - Added logic to block user from adding to cart if stock limit has reached
 ### 29/04/2024 - Added Toast Notifications
-
 ### 29/04/2024 - Added Toast Notifications
-
 ### 30/05/2024 
 - Moved favorite products to a context
 - Changed product card design
+- Changed buttons in carousel to allow infinite swiping 
 
 ## Struggles
 - Updating the count instantaneously for favourited products was an issue. It was resolved by moving the favourite products to a context.
