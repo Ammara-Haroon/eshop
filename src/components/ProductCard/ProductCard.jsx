@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./ProductCard.module.scss";
 import { updateFavouriteProducts } from "../../services/products-service";
 import { useNavigate } from "react-router-dom";
@@ -6,14 +6,15 @@ import { addToCart } from "../../services/cart-data-services";
 import LikeButton from "../LikeButton/LikeButton";
 import PriceInformation from "../PriceInformation/PriceInformation";
 import Message from "../Message/Message";
+import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
 const ProductCard = ({ product }) => {
   const [isLiked, setIsLiked] = useState(product.favourite);
   const [addedToCart, setAddedToCart] = useState(false);
   const [noMore, setNoMore] = useState(false);
   const navigate = useNavigate(null);
-  
+  const {updateFav} = useContext(FavouriteProductsContext);
   const handleLike = () => {
-    updateFavouriteProducts(product.docId, !isLiked);
+    updateFav(product, !isLiked);
     setIsLiked(!isLiked);
   };
   
@@ -41,11 +42,11 @@ const ProductCard = ({ product }) => {
           alt={product.title}
         />
 
-        <LikeButton
+        {product.stock !== 0 && <LikeButton
           className={style.icon}
           setLikedStatus={handleLike}
           isLiked={isLiked}
-        />
+        />}
 
         <h2>
           {product.title} (<small>{product.category}</small>)

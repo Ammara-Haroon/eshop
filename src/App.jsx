@@ -8,12 +8,13 @@ import ProductsLoader from "./containers/ProductLoader/ProductLoader";
 import CartPage from "./pages/CartPage/CartPage";
 import ProductsListPage from "./pages/ProductsListPage/ProductsListPage";
 import Banner from "./components/Banner/Banner";
+import FavouriteProductsContextProvider, { FavouriteProductsContext } from "./contexts/FavouriteProductsContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Banner message={"Big Sale Tomorrow -- 40% OFF on ALL ITEMS"} />
+        <FavouriteProductsContextProvider>
         <Header />
         <NavBar />
         <Routes>
@@ -22,7 +23,8 @@ function App() {
           <Route path="/eshop/wishlist" element={<WishListPage />} />
           <Route path="/eshop/products/:id" element={<ProductsLoader />} />
           <Route path="/eshop/cart" element={<CartPage />} /> 
-        </Routes> 
+        </Routes>
+        </FavouriteProductsContextProvider>
         <Footer />
       </BrowserRouter>
     </>

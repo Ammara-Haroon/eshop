@@ -42,11 +42,11 @@ const HomePage = () => {
 
   return (
     <div className={style.page}>
-      <Banner message={"Big Sale Tomorrow -- 40% OFF on ALL ITEMS"} />
       {errMsg && <ErrorMessage errMsg={errMsg} />}
       {isLoading && <LoadingSpinner />}
       {!errMsg && !isLoading && products.length > 0 && (
         <>
+          <Banner message={"Big Sale Tomorrow -- 40% OFF on ALL ITEMS"} />
           <Carousel products={featuredProducts} isAutoSliding={true} />
           <ProductsGrid
             products={products}

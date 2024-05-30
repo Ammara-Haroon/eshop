@@ -11,7 +11,7 @@ export const addToCart = (product, color = "black", quantity = 1) => {
   if (index === -1) {
     cart.push({ product: product, color: color, quantity: quantity });
   } else if (cart[index].quantity + quantity <= cart[index].product.stock) {
-    cart[index].quantity = Number(cart[index].quantity) + quantity;
+    cart[index].quantity = cart[index].quantity + quantity;
   } else {
     throw new Error("No more stock !");
   }

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import style from "./LikeButton.module.scss";
 const LikeButton = ({ isLiked, setLikedStatus, className }) => {
   return (
-    <button className={style.btn}>
-      <small className={className} onClick={setLikedStatus}>
+    <button onClick={setLikedStatus} className={className}>
+      <small>
         {isLiked ? "♥" : "♡"}
       </small>
     </button>

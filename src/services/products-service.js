@@ -45,6 +45,7 @@ export const getFavouriteProducts = async () => {
     ...doc.data(),
     docId: doc.id,
   }));
+  console.log(productsList);
   return productsList;
 };
 export const getCountOfFavouriteProducts = async () => {

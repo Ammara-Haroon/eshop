@@ -12,21 +12,22 @@ import {
   faHeart,
   faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
+import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
 const Header = () => {
+  const {getFavCount} = useContext(FavouriteProductsContext);
+  console.log(getFavCount());
   const [cartCount, setCartCount] = useState(0);
-  const [favCount, setFavCount] = useState(0);
-
+  //const [favCount, setFavCount] = useState(getFavCount());
   useEffect(() => {
     setCartCount(getNumberOfCartItems());
-    getCountOfFavouriteProducts().then(setFavCount);
-
+    //getCountOfFavouriteProducts().then(setFavCount);
     const handleCartChange = () => {
       setCartCount(getNumberOfCartItems());
-      getCountOfFavouriteProducts().then(setFavCount);
+    //  getCountOfFavouriteProducts().then(setFavCount);
     };
     const handleFavouriteChange = () => {
       setCartCount(getNumberOfCartItems());
-      getCountOfFavouriteProducts().then(setFavCount);
+    //  getCountOfFavouriteProducts().then(setFavCount);
     };
     window.addEventListener("mousedown", handleFavouriteChange);
     window.addEventListener("click", handleCartChange);
@@ -47,7 +48,8 @@ const Header = () => {
         <Link to="/eshop/wishlist">
           <div className={style.icon_wrapper}>
             <FontAwesomeIcon className={style.icon} icon={faHeart} siz="lg" />
-            <small>{favCount}</small>
+            {/* <small>{favCount}</small> */}
+            <small>{getFavCount()}</small>
           </div>
         </Link>
         <Link to="/eshop/cart">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import style from "./ProductPage.module.scss";
 import Carousel from "../../components/Carousel/Carousel";
 import ColoredRadioButtons from "../../components/ColoredRadioButtons/ColoredRadioButtons";
@@ -7,6 +7,8 @@ import LikeButton from "../../components/LikeButton/LikeButton";
 import { updateFavouriteProducts } from "../../services/products-service";
 import { addToCart } from "../../services/cart-data-services";
 import Message from "../../components/Message/Message";
+import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
+
 const ProductPage = ({ product }) => {
   const [isLiked, setIsLiked] = useState(product.favourite);
   const colors = product.color;
@@ -14,6 +16,8 @@ const ProductPage = ({ product }) => {
   const [color, setColor] = useState("black");
   const [noMore, setNoMore] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
+  const {updateFav} = useContext(FavouriteProductsContext);
+
   useEffect(() => {
     setAddedToCart(false);
   }, []);
@@ -33,10 +37,11 @@ const ProductPage = ({ product }) => {
     }
   };
 
-  const handleLike = (e) => {
-    updateFavouriteProducts(product.docId, !isLiked);
+  const handleLike = () => {
+    updateFav(product, !isLiked);
     setIsLiked(!isLiked);
   };
+  
   const handleSubmit = (e) => {
     try {
       addToCart(product, color, Number(qty));
