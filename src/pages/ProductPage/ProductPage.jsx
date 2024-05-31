@@ -8,6 +8,7 @@ import { updateFavouriteProducts } from "../../services/products-service";
 import { addToCart } from "../../services/cart-data-services";
 import Message from "../../components/Message/Message";
 import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductPage = ({ product }) => {
   const [isLiked, setIsLiked] = useState(product.favourite);
@@ -17,6 +18,7 @@ const ProductPage = ({ product }) => {
   const [noMore, setNoMore] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
   const {updateFav} = useContext(FavouriteProductsContext);
+  const navigate = useNavigate(null);
 
   useEffect(() => {
     setAddedToCart(false);
@@ -25,11 +27,8 @@ const ProductPage = ({ product }) => {
     console.log(e.target.value);
     if (Number(e.target.value) === product.stock) {
       setNoMore(true);
-      console.log(e.target.value, "no more true");
     }
     if (noMore && Number(e.target.value) === product.stock - 1) {
-      console.log(e.target.value, "no more false");
-
       setNoMore(false);
     }
     if (Number(e.target.value) > 0 && Number(e.target.value) <= product.stock) {
@@ -46,6 +45,7 @@ const ProductPage = ({ product }) => {
     try {
       addToCart(product, color, Number(qty));
       setAddedToCart(true);
+      navigate("/eshop/products/"+product.docId);
     } catch (err) {
       setNoMore(true);
       e.preventDefault();
