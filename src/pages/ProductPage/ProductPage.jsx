@@ -43,11 +43,11 @@ const ProductPage = ({ product }) => {
 
   const handleSubmit = (e) => {
     try {
-      e.preventDefault();
+      //e.preventDefault();
       addToCart(product, color, Number(qty));
       setAddedToCart(true);
       console.log("navigating");
-      // navigate("/eshop/products/" + product.docId);
+      navigate("/eshop/products/" + product.docId);
     } catch (err) {
       setNoMore(true);
       e.preventDefault();

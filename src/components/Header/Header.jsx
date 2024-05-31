@@ -8,13 +8,10 @@ import {
 } from "../../services/products-service";
 import { getNumberOfCartItems } from "../../services/cart-data-services";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faShoppingBag,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
 const Header = () => {
-  const {getFavCount} = useContext(FavouriteProductsContext);
+  const { getFavCount } = useContext(FavouriteProductsContext);
   const [cartCount, setCartCount] = useState(0);
   useEffect(() => {
     setCartCount(getNumberOfCartItems());
@@ -22,8 +19,10 @@ const Header = () => {
       setCartCount(getNumberOfCartItems());
     };
     window.addEventListener("click", handleCartChange);
+    window.addEventListener("mousedown", handleCartChange);
     return () => {
       window.removeEventListener("click", handleCartChange);
+      window.removeEventListener("mousedown", handleCartChange);
     };
   }, []);
   return (
