@@ -47,6 +47,7 @@ const ProductPage = ({ product }) => {
       addToCart(product, color, Number(qty));
       updateItemsCount();
       setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 6000);
     } catch (err) {
       setNoMore(true);
       e.preventDefault();
