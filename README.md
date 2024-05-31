@@ -91,9 +91,9 @@ When an item is ordered beyond its stock limit, an 'out of stock' message is dis
 
 Each product card displays a discount badge if the discount is more than 50%.
 
-### Navigation
+### Routing and Navigation
 
-There is a mobile menu and a navbar depending on the screen size. There are two icons for wish list and cart in the top right corner. The icons also display number of items in the cart and wish list. The cart numbers are updated immediately as cart is in session storage, but the wish list count updates after a delay because the count is returned as a promise from API call to firestore.
+Routing is implemented via react router dom library. There is a mobile menu and a navbar depending on the screen size. There are two icons for wish list and cart in the top right corner. The icons also display number of items in the cart and wish list. The cart numbers are updated immediately as cart is in session storage, but the wish list count updates after a delay because the count is returned as a promise from API call to firestore.
 
 ### Toast Notifications
 A toast notification appears each time an item is added to stock or when there is no more stock left to order.
@@ -104,6 +104,7 @@ A toast notification appears each time an item is added to stock or when there i
 
 ## Known Issues 
 - The number on favourites icon is not updated instantly. It might be because it's making an API call and waiting on a promise to be resolved. (Issue has been resolved)
+- Prices are sorted on original values and not after applying discount
 
 ## Future Goals
 - Add a stripe integration to cart
@@ -128,6 +129,10 @@ A toast notification appears each time an item is added to stock or when there i
 - Moved favorite products to a context
 - Changed product card design
 - Changed buttons in carousel to allow infinite swiping 
+### 31/05/2024 
+- Fixed image overflowing carousel
+- Fine-tuned toast notification animation
+- Cleaned up console logs and code files
 
 ## Struggles
 - Updating the count instantaneously for favourited products was an issue. It was resolved by moving the favourite products to a context.

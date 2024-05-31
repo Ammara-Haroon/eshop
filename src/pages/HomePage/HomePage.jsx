@@ -27,7 +27,6 @@ const HomePage = () => {
         setTotalCount(data.totalCount);
       })
       .catch((err) => {
-        console.error(err.message);
         setErrMsg(err.message);
       })
       .finally(() => {

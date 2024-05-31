@@ -5,6 +5,7 @@
   text-wrap: nowrap;
   animation: banner-motion 10s linear infinite;
   overflow: hidden;
+  text-transform: uppercase;
 }
 @keyframes banner-motion {
   from {

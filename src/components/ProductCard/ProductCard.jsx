@@ -27,10 +27,10 @@ const ProductCard = ({ product }) => {
     try {
       addToCart(product);
       setAddedToCart(true);
-      setTimeout(() => setAddedToCart(false), 1000);
+      setTimeout(() => setAddedToCart(false), 2000);
     } catch (err) {
       setNoMore(true);
-      setTimeout(() => setNoMore(false), 1000);
+      setTimeout(() => setNoMore(false), 2000);
     }
   };
   return (

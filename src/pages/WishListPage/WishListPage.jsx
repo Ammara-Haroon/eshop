@@ -5,25 +5,6 @@ import ProductsGrid from "../../components/ProductsGrid/ProductsGrid";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
 const WishListPage = () => {
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [errMsg, setErrMsg] = useState(null);
-  // const [products, setProducts] = useState([]);
-
-  // useEffect(() => {
-  //   setErrMsg(null);
-  //   setIsLoading(true);
-  //   getFavouriteProducts()
-  //     .then((products) => {
-  //       setProducts(products);
-  //     })
-  //     .catch((e) => {
-  //       setErrMsg(err.message);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }, []);
-
   const {favProducts,isLoading,errMsg} = useContext(FavouriteProductsContext);
   return (
     <div className={style.page}>

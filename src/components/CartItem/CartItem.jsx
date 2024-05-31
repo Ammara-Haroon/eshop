@@ -9,12 +9,10 @@ const CartItem = ({ item, handleDelete, handleAdd }) => {
   const handleAddWithStockUpdate = () => {
     if (item.quantity + 1 === item.product.stock) {
       setNoMore(true);
-      console.log("no moree");
     }
     handleAdd(item.product, item.color);
   };
   const handleDeleteWithStockUpdate = () => {
-    console.log(item.quantity, item.product.stock);
     if (item.quantity === item.product.stock) {
       setNoMore(false);
     }

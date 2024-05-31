@@ -9,17 +9,14 @@ const FavouriteProductsContextProvider = ({children}) => {
   const [errMsg, setErrMsg] = useState(null);
   const [favProducts, setFavProducts] = useState([]);
   const [count,setCount] = useState(0);
-    console.log(favProducts);
-
+   
   useEffect(() => {
-    console.log("reloading favs");
     setErrMsg(null);
     setIsLoading(true);
     getFavouriteProducts()
       .then((products) => {
         setFavProducts(products);
         if(products.length !== count){
-          console.log("updated count");
           setCount(products.length);
         }
       })
@@ -29,8 +26,7 @@ const FavouriteProductsContextProvider = ({children}) => {
       .finally(() => {
         setIsLoading(false);
       });
-    console.log("loading:",favProducts);
-
+   
   }, []);
   const updateFav = (product,isLiked) => {
     updateFavouriteProducts(product.docId, isLiked);    
@@ -39,7 +35,6 @@ const FavouriteProductsContextProvider = ({children}) => {
       favProducts.push(product);
       setCount(count+1);
     } else {
-      console.log(favProducts.filter(prod=>prod.docId !== product.docId));
       setFavProducts(favProducts.filter(prod=>prod.docId !== product.docId));
       setCount(count-1);
     }

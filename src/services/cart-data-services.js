@@ -1,5 +1,3 @@
-import { getPriceAfterDiscount } from "./util-services";
-
 export const addToCart = (product, color = "black", quantity = 1) => {
   if (!window.sessionStorage.getItem("cart")) {
     window.sessionStorage.setItem("cart", JSON.stringify([]));
