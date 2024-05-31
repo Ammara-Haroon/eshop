@@ -17,7 +17,7 @@ const ProductPage = ({ product }) => {
   const [color, setColor] = useState("black");
   const [noMore, setNoMore] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
-  const {updateFav} = useContext(FavouriteProductsContext);
+  const { updateFav } = useContext(FavouriteProductsContext);
   const navigate = useNavigate(null);
 
   useEffect(() => {
@@ -40,12 +40,14 @@ const ProductPage = ({ product }) => {
     updateFav(product, !isLiked);
     setIsLiked(!isLiked);
   };
-  
+
   const handleSubmit = (e) => {
     try {
+      e.preventDefault();
       addToCart(product, color, Number(qty));
       setAddedToCart(true);
-      navigate("/eshop/products/"+product.docId);
+      console.log("navigating");
+      // navigate("/eshop/products/" + product.docId);
     } catch (err) {
       setNoMore(true);
       e.preventDefault();

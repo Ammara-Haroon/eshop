@@ -15,6 +15,8 @@ const ProductsLoader = () => {
     setIsLoading(true);
     getProductById(id)
       .then((product) => {
+        console.log("loading product", product, id);
+
         setProduct(product);
       })
       .catch((err) => {
