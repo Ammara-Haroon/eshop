@@ -7,25 +7,29 @@ import LikeButton from "../LikeButton/LikeButton";
 import PriceInformation from "../PriceInformation/PriceInformation";
 import Message from "../Message/Message";
 import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
+import { CartCountContext } from "../../contexts/CartCountContext";
 const ProductCard = ({ product }) => {
   const [isLiked, setIsLiked] = useState(product.favourite);
   const [addedToCart, setAddedToCart] = useState(false);
   const [noMore, setNoMore] = useState(false);
   const navigate = useNavigate(null);
-  const {updateFav} = useContext(FavouriteProductsContext);
+  const { updateFav } = useContext(FavouriteProductsContext);
+  const { updateItemsCount } = useContext(CartCountContext);
+
   const handleLike = () => {
     updateFav(product, !isLiked);
     setIsLiked(!isLiked);
   };
-  
+
   //load the product page based on product id
   const loadProductPage = () => {
     navigate("/eshop/products/" + product.docId);
   };
-  
+
   const handleClick = () => {
     try {
       addToCart(product);
+      updateItemsCount();
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 2000);
     } catch (err) {
@@ -42,11 +46,13 @@ const ProductCard = ({ product }) => {
           alt={product.title}
         />
 
-        {product.stock !== 0 && <LikeButton
-          className={style.icon}
-          setLikedStatus={handleLike}
-          isLiked={isLiked}
-        />}
+        {product.stock !== 0 && (
+          <LikeButton
+            className={style.icon}
+            setLikedStatus={handleLike}
+            isLiked={isLiked}
+          />
+        )}
 
         <h2>
           {product.title} (<small>{product.category}</small>)

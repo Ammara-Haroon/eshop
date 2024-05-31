@@ -4,11 +4,11 @@ import Carousel from "../../components/Carousel/Carousel";
 import ColoredRadioButtons from "../../components/ColoredRadioButtons/ColoredRadioButtons";
 import PriceInformation from "../../components/PriceInformation/PriceInformation";
 import LikeButton from "../../components/LikeButton/LikeButton";
-import { updateFavouriteProducts } from "../../services/products-service";
 import { addToCart } from "../../services/cart-data-services";
 import Message from "../../components/Message/Message";
 import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
 import { useNavigate } from "react-router-dom";
+import { CartCountContext } from "../../contexts/CartCountContext";
 
 const ProductPage = ({ product }) => {
   const [isLiked, setIsLiked] = useState(product.favourite);
@@ -19,12 +19,12 @@ const ProductPage = ({ product }) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const { updateFav } = useContext(FavouriteProductsContext);
   const navigate = useNavigate(null);
+  const { updateItemsCount } = useContext(CartCountContext);
 
   useEffect(() => {
     setAddedToCart(false);
   }, []);
   const handleQtyChange = (e) => {
-    console.log(e.target.value);
     if (Number(e.target.value) === product.stock) {
       setNoMore(true);
     }
@@ -43,11 +43,10 @@ const ProductPage = ({ product }) => {
 
   const handleSubmit = (e) => {
     try {
-      //e.preventDefault();
+      e.preventDefault();
       addToCart(product, color, Number(qty));
+      updateItemsCount();
       setAddedToCart(true);
-      console.log("navigating");
-      navigate("/eshop/products/" + product.docId);
     } catch (err) {
       setNoMore(true);
       e.preventDefault();

@@ -13,11 +13,8 @@ const ProductsLoader = () => {
   useEffect(() => {
     setErrMsg(null);
     setIsLoading(true);
-    console.log("loading product", product, id);
-
     getProductById(id)
       .then((product) => {
-        console.log("loading product", product, id);
         setProduct(product);
       })
       .catch((err) => {

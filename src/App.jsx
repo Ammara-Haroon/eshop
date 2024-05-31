@@ -8,22 +8,27 @@ import ProductsLoader from "./containers/ProductLoader/ProductLoader";
 import CartPage from "./pages/CartPage/CartPage";
 import ProductsListPage from "./pages/ProductsListPage/ProductsListPage";
 import Banner from "./components/Banner/Banner";
-import FavouriteProductsContextProvider, { FavouriteProductsContext } from "./contexts/FavouriteProductsContext";
+import FavouriteProductsContextProvider, {
+  FavouriteProductsContext,
+} from "./contexts/FavouriteProductsContext";
+import CartCountContextProvider from "./contexts/CartCountContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <FavouriteProductsContextProvider>
-        <Header />
-        <NavBar />
-        <Routes>
-          <Route path="/eshop" element={<HomePage />} />
-          <Route path="/eshop/:page" element={<ProductsListPage />} />
-          <Route path="/eshop/wishlist" element={<WishListPage />} />
-          <Route path="/eshop/products/:id" element={<ProductsLoader />} />
-          <Route path="/eshop/cart" element={<CartPage />} /> 
-        </Routes>
+          <CartCountContextProvider>
+            <Header />
+            <NavBar />
+            <Routes>
+              <Route path="/eshop" element={<HomePage />} />
+              <Route path="/eshop/:page" element={<ProductsListPage />} />
+              <Route path="/eshop/wishlist" element={<WishListPage />} />
+              <Route path="/eshop/products/:id" element={<ProductsLoader />} />
+              <Route path="/eshop/cart" element={<CartPage />} />
+            </Routes>
+          </CartCountContextProvider>
         </FavouriteProductsContextProvider>
         <Footer />
       </BrowserRouter>

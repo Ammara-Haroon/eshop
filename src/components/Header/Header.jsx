@@ -2,29 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import style from "./Header.module.scss";
 import MobileNav from "../MobileNav/MobileNav";
 import { Link } from "react-router-dom";
-import {
-  getCountOfFavouriteProducts,
-  getTotalCountOfProducts,
-} from "../../services/products-service";
 import { getNumberOfCartItems } from "../../services/cart-data-services";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FavouriteProductsContext } from "../../contexts/FavouriteProductsContext";
+import { CartCountContext } from "../../contexts/CartCountContext";
 const Header = () => {
   const { getFavCount } = useContext(FavouriteProductsContext);
-  const [cartCount, setCartCount] = useState(0);
-  useEffect(() => {
-    setCartCount(getNumberOfCartItems());
-    const handleCartChange = () => {
-      setCartCount(getNumberOfCartItems());
-    };
-    window.addEventListener("click", handleCartChange);
-    window.addEventListener("mousedown", handleCartChange);
-    return () => {
-      window.removeEventListener("click", handleCartChange);
-      window.removeEventListener("mousedown", handleCartChange);
-    };
-  }, []);
+  const { itemsCount } = useContext(CartCountContext);
   return (
     <div className={style.header}>
       <MobileNav />
@@ -47,7 +32,7 @@ const Header = () => {
               icon={faShoppingBag}
               siz="lg"
             />
-            <small>{cartCount}</small>
+            <small>{itemsCount}</small>
           </div>
         </Link>
       </div>

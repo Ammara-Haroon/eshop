@@ -6,20 +6,25 @@ import {
   addToCart,
 } from "../../services/cart-data-services";
 import style from "./CartPage.module.scss";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Message from "../../components/Message/Message";
 import PriceInformation from "../../components/PriceInformation/PriceInformation";
+import { CartCountContext } from "../../contexts/CartCountContext";
 
 const CartPage = () => {
   const [cart, setCart] = useState(getCart());
+  const { updateItemsCount } = useContext(CartCountContext);
+
   const deleteCartItem = (id, color) => {
     deleteFromCart(id, color);
     setCart(getCart());
+    updateItemsCount();
   };
   const addCartItem = (product, color) => {
     addToCart(product, color);
     setCart(getCart());
- };
+    updateItemsCount();
+  };
   return (
     <div className={style.page}>
       <h3>My Cart</h3>
